@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.awt.*;
 
-/**
- *
- * @author michele2306
- */
 public class Ostacoli extends Component {
     private int x;
     private int y;
@@ -36,8 +27,6 @@ public class Ostacoli extends Component {
         g.fillRect(x, y, width, heigth);
 
     }
-
-    // altri campi e metodi...
 
     public boolean checkCollisionTop(Personaggio player) {
         // Calculate the x and y coordinates of the player's top edge

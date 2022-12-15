@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.awt.*;
 
-/**
- *
- * @author michele2306
- */
 public class Personaggio extends Component {
     private int x;
     private int y;
@@ -81,8 +72,6 @@ public class Personaggio extends Component {
         g.setColor(this.color);
         g.fillRect(x, y, size, size);
     }
-
-    // altri campi e metodi...
 
     @Override
     public Rectangle getBounds() {

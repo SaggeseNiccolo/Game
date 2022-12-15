@@ -9,10 +9,6 @@ import java.util.Random;
 import javax.swing.*;
 import javax.sound.sampled.*;
 
-/**
- *
- * @author michele2306
- */
 public class Game extends JPanel implements KeyListener {
 
     private static Personaggio personaggio;

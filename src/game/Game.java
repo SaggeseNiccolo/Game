@@ -28,23 +28,22 @@ public class Game extends JPanel implements KeyListener {
     static Traguardo traguardo = new Traguardo(100, 100);
     long startTime = System.currentTimeMillis();
 
-    
-
     public Game() {
         personaggio = new Personaggio(10, 10, 10);
         ostacolo = new Ostacoli(20, 20);
 
     }
 
-    //public void start() {
+    // public void start() {
     // Inizializza lo stato del gioco (ad esempio, il giocatore, i nemici, etc.)
     // Esegui il loop del gioco finché il gioco non è finito
-    //while (true) {
+    // while (true) {
     // Gestisci l'input del giocatore (ad esempio, le azioni del giocatore)
     // Aggiorna lo stato del gioco in base all'input del giocatore
-    // Rendi il gioco sullo schermo (ad esempio, disegna il giocatore, i nemici, etc.)
-    //}
-    //}
+    // Rendi il gioco sullo schermo (ad esempio, disegna il giocatore, i nemici,
+    // etc.)
+    // }
+    // }
     // Questo è il metodo main(), il punto di ingresso della tua applicazione
     public static void main(String[] args) {
 
@@ -68,7 +67,7 @@ public class Game extends JPanel implements KeyListener {
         // Rectangle rettangolo=frame.getBounds();
         // System.out.println(frame.getHeight());
         // System.out.println(frame.getWidth());
-        //game.start();
+        // game.start();
 
     }
 
@@ -99,11 +98,17 @@ public class Game extends JPanel implements KeyListener {
         }
 
         if (personaggio.getBounds().intersects(traguardo.getBounds())) {
-            // If the player has reached the end point, display a victory message and exit the game
+            // If the player has reached the end point, display a victory message and exit
+            // the game
             long elapsedTime = System.currentTimeMillis() - startTime;
             double elapsedTimeInSeconds = elapsedTime / 1000.0;
-            //int scelta = JOptionPane.showConfirmDialog(this, "Congratulazioni, sei fuggito da Catanzaro!\n Tempo totale: " + elapsedTimeInSeconds + " secondi"+"\nVuoi rigiocare?",);
-            int scelta = JOptionPane.showConfirmDialog(this, "Congratulazioni, sei fuggito da Catanzaro!\n Tempo totale: " + elapsedTimeInSeconds + " secondi" + "\nVuoi rigiocare?", "Fine gioco", JOptionPane.YES_NO_OPTION);
+            // int scelta = JOptionPane.showConfirmDialog(this, "Congratulazioni, sei
+            // fuggito da Catanzaro!\n Tempo totale: " + elapsedTimeInSeconds + "
+            // secondi"+"\nVuoi rigiocare?",);
+            int scelta = JOptionPane.showConfirmDialog(this,
+                    "Congratulazioni, sei fuggito da Catanzaro!\n Tempo totale: " + elapsedTimeInSeconds + " secondi"
+                            + "\nVuoi rigiocare?",
+                    "Fine gioco", JOptionPane.YES_NO_OPTION);
             if (scelta == JOptionPane.YES_OPTION) {
                 startTime = System.currentTimeMillis();
                 personaggio.setX(10);
@@ -114,7 +119,7 @@ public class Game extends JPanel implements KeyListener {
 
         }
         repaint();
-        //repaint(new Rectangle(500,500));
+        // repaint(new Rectangle(500,500));
 
     }
 
@@ -139,22 +144,23 @@ public class Game extends JPanel implements KeyListener {
     @Override
     public void keyReleased(KeyEvent ke) {
         int keyCode = ke.getKeyCode();
-        if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT) {
+        if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_LEFT
+                || keyCode == KeyEvent.VK_RIGHT) {
             try {
                 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName));
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioInputStream);
                 Control[] controls = clip.getControls();
-                
+
                 for (Control control : controls) {
                     if (control.getType() == FloatControl.Type.VOLUME) {
                         FloatControl volumeControl = (FloatControl) control;
                         volumeControl.setValue(0.1f);
                         break;
                     }
-                    
-                        clip.start();
-                    
+
+                    clip.start();
+
                 }
 
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {

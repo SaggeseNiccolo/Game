@@ -11,7 +11,7 @@ import java.awt.*;
  *
  * @author Super
  */
-public class Traguardo extends Component{
+public class Traguardo extends Component {
     private int x;
     private int y;
     private int width;
@@ -23,18 +23,16 @@ public class Traguardo extends Component{
         this.width = 10;
         this.heigth = 10;
     }
-    
-     public void draw(Graphics g){
-             g.setColor(Color.green);
-             g.fillRect(x, y, width, heigth);
-            
-         }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.green);
+        g.fillRect(x, y, width, heigth);
+
+    }
 
     @Override
     public Rectangle getBounds() {
-     return new Rectangle(x, y, width, heigth); 
+        return new Rectangle(x, y, width, heigth);
     }
-     
-     
-    
+
 }

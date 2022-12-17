@@ -239,7 +239,7 @@ public class Game extends JPanel implements KeyListener {
         for (int i = 0; i < array.length; i++) {
             // Itero sugli elementi dell'array interno
             for (int j = 0; j < array[i].length; j++) {
-                randomNumber = Math.random() * 2 - 1;
+                randomNumber = Math.random() * 8 - 1;
                 // Arrotondo il numero casuale a un intero
                 int randomInt = (int) Math.round(randomNumber);
                 randomInt = Math.abs(randomInt);

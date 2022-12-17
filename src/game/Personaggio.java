@@ -76,7 +76,5 @@ public class Personaggio extends Component {
     @Override
     public Rectangle getBounds() {
         return new Rectangle(x, y, size, size);
-
     }
-
 }

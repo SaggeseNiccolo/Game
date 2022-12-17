@@ -21,62 +21,48 @@ public class Game extends JPanel implements KeyListener {
     static Ostacoli muroSotto = new Ostacoli(0, 353, 400, 10);
     static Ostacoli muroDestro = new Ostacoli(376, 0, 10, 400);
     static Ostacoli muroSinistro = new Ostacoli(0, 0, 10, 400);
-    
+
     static Random randomico1 = new Random();
     static Random randomico2 = new Random();
-    
-    static int xTra=((randomico1.nextInt(37))+1)*10;
-    static int yTra=((randomico2.nextInt(35))+1)*10;
-    
-   
-    
-    static Traguardo traguardo = new Traguardo(xTra,yTra);
+
+    static int xTra = ((randomico1.nextInt(37)) + 1) * 10;
+    static int yTra = ((randomico2.nextInt(35)) + 1) * 10;
+
+    static Traguardo traguardo = new Traguardo(xTra, yTra);
     long startTime = System.currentTimeMillis();
 
     static ArrayList<Integer> posizioni = new ArrayList<>();
     static ArrayList<Ostacoli> nuovoArray = new ArrayList<>();
     static int z = 0;
-    
-  
 
     public Game() {
         personaggio = new Personaggio(10, 10, 10);
-
     }
 
-    // public void start() {
-    // Inizializza lo stato del gioco (ad esempio, il giocatore, i nemici, etc.)
-    // Esegui il loop del gioco finché il gioco non è finito
-    // while (true) {
-    // Gestisci l'input del giocatore (ad esempio, le azioni del giocatore)
-    // Aggiorna lo stato del gioco in base all'input del giocatore
-    // Rendi il gioco sullo schermo (ad esempio, disegna il giocatore, i nemici,
-    // etc.)
-    // }
-    // }
-    // Questo è il metodo main(), il punto di ingresso della tua applicazione
     public static void main(String[] args) {
-        boolean controlla=false;
-          while(xTra==10 && yTra==10){
-           xTra=((randomico1.nextInt(38))+1)*10;
-           yTra=((randomico2.nextInt(36))+1)*10;
-           controlla=true;
-       }
-       if(xTra>360){
-       xTra=366;
-       controlla=true;
-       }
-       
-       if(yTra>340){
-       yTra=343;
-       controlla=true;
-       }
-       
-       if(controlla){
-       traguardo.setX(xTra);
-       traguardo.setY(yTra);
-       }
+        boolean controlla = false;
+        while (xTra == 10 && yTra == 10) {
+            xTra = ((randomico1.nextInt(38)) + 1) * 10;
+            yTra = ((randomico2.nextInt(36)) + 1) * 10;
+            controlla = true;
+        }
+        if (xTra > 360) {
+            xTra = 366;
+            controlla = true;
+        }
+
+        if (yTra > 340) {
+            yTra = 343;
+            controlla = true;
+        }
+
+        if (controlla) {
+            traguardo.setX(xTra);
+            traguardo.setY(yTra);
+        }
+
         int[][] array = creaSchema();
+
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 if (array[i][j] == 1) {
@@ -85,7 +71,7 @@ public class Game extends JPanel implements KeyListener {
                 }
             }
         }
-     
+
         JFrame frame = new JFrame();
         Game game = new Game();
         for (int i = 0; i < nuovoArray.size(); i++) {
@@ -104,32 +90,28 @@ public class Game extends JPanel implements KeyListener {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Rectangle rettangolo=frame.getBounds();
-        // System.out.println(frame.getHeight());
-        // System.out.println(frame.getWidth());
-        // game.start();
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP) {
-           
+
             boolean move = true;
             for (int i = 0; i < nuovoArray.size(); i++) {
                 if (nuovoArray.get(i).checkCollisionTop(personaggio)) {
                     move = false;
                     break;
                 }
-
             }
+
             if (move == true) {
                 personaggio.moveUp();
             }
 
         } else if (keyCode == KeyEvent.VK_DOWN) {
             boolean move = true;
+
             for (int i = 0; i < nuovoArray.size(); i++) {
                 if (nuovoArray.get(i).checkCollisionBottom(personaggio)) {
                     move = false;
@@ -137,37 +119,39 @@ public class Game extends JPanel implements KeyListener {
                 }
 
             }
+
             if (move == true) {
                 personaggio.moveDown();
             }
         } else if (keyCode == KeyEvent.VK_LEFT) {
             boolean move = true;
+
             for (int i = 0; i < nuovoArray.size(); i++) {
                 if (nuovoArray.get(i).checkCollisionLeft(personaggio)) {
                     move = false;
                     break;
                 }
-
             }
+
             if (move == true) {
                 personaggio.moveLeft();
             }
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             boolean move = true;
+
             for (int i = 0; i < nuovoArray.size(); i++) {
                 if (nuovoArray.get(i).checkCollisionRight(personaggio)) {
                     move = false;
                     break;
                 }
-
             }
+
             if (move == true) {
                 personaggio.moveRight();
             }
         } else if (keyCode == KeyEvent.VK_C) {
             Random random = new Random();
             personaggio.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
-
         }
 
         if (personaggio.getBounds().intersects(traguardo.getBounds())) {
@@ -197,8 +181,6 @@ public class Game extends JPanel implements KeyListener {
 
         }
         repaint();
-        // repaint(new Rectangle(500,500));
-
     }
 
     @Override
@@ -212,9 +194,8 @@ public class Game extends JPanel implements KeyListener {
         muroSopra.draw(g);
         traguardo.draw(g);
         for (int i = 0; i < nuovoArray.size(); i++) {
-           nuovoArray.get(i).draw(g);
+            nuovoArray.get(i).draw(g);
         }
-
     }
 
     @Override
@@ -247,7 +228,6 @@ public class Game extends JPanel implements KeyListener {
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -260,20 +240,20 @@ public class Game extends JPanel implements KeyListener {
             // Itero sugli elementi dell'array interno
             for (int j = 0; j < array[i].length; j++) {
                 randomNumber = Math.random() * 2 - 1;
-// Arrotondo il numero casuale a un intero
+                // Arrotondo il numero casuale a un intero
                 int randomInt = (int) Math.round(randomNumber);
                 randomInt = Math.abs(randomInt);
-                int controllo1=((i+1) * 10);
-                int controllo2=((j+1) * 10);
-                
-                if(controllo1>360){
-                controllo1=366;
+                int controllo1 = ((i + 1) * 10);
+                int controllo2 = ((j + 1) * 10);
+
+                if (controllo1 > 360) {
+                    controllo1 = 366;
                 }
-                if(controllo2>340){
-                   controllo2=343;
+                if (controllo2 > 340) {
+                    controllo2 = 343;
                 }
-                if((i==0 && j==0) || (controllo1==traguardo.getX()&& controllo2==traguardo.getY())){
-                randomInt=0;
+                if ((i == 0 && j == 0) || (controllo1 == traguardo.getX() && controllo2 == traguardo.getY())) {
+                    randomInt = 0;
                 }
                 array[i][j] = randomInt;
                 if (randomInt == 1) {
@@ -282,8 +262,6 @@ public class Game extends JPanel implements KeyListener {
                 }
             }
         }
-        
         return array;
     }
-
 }

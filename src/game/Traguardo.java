@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.*;
 
 public class Traguardo extends Component {
@@ -31,17 +30,14 @@ public class Traguardo extends Component {
     public void setY(int y) {
         this.y = y;
     }
-    
-    
-     public void draw(Graphics g){
-             g.setColor(Color.green);
-             g.fillRect(x, y, width, heigth);
-            
-         }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.green);
+        g.fillRect(x, y, width, heigth);
+    }
 
     @Override
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, heigth);
     }
-
 }

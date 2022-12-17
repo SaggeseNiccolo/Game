@@ -25,7 +25,6 @@ public class Ostacoli extends Component {
     public void draw(Graphics g) {
         g.setColor(Color.red);
         g.fillRect(x, y, width, heigth);
-
     }
 
     public boolean checkCollisionTop(Personaggio player) {
@@ -99,5 +98,4 @@ public class Ostacoli extends Component {
         // collision
         return playerMaxY == obstacleMinY && playerMinX < obstacleMaxX && playerMaxX > obstacleMinX;
     }
-
 }
